@@ -38,6 +38,14 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           type: 'string',
         },
         {
+          name: 'slug',
+          type: 'slug',
+          options: {
+            source: 'name',
+            maxLength: 96,
+          },
+        },
+        {
           name: 'locations',
           type: 'array',
           of: [{ type: 'reference', to: [{ type: 'location' }] }],

@@ -1,4 +1,5 @@
 import { groq } from 'next-sanity'
+import Link from 'next/link'
 
 import { client } from '../../sanity/lib/client'
 
@@ -7,6 +8,7 @@ export default async function Home() {
     *[_type == "business"] {
       _id,
       name,
+      slug,
       description,
       social {
         facebook,
@@ -27,7 +29,9 @@ export default async function Home() {
       <ul>
         {data.map((business: any) => (
           <li key={business._id}>
-            <h2>{business.name}</h2>
+            <h2>
+              <Link href={`/${business.slug?.current}`}>{business.name}</Link>
+            </h2>
             <p>{business.description}</p>
             <b>Social</b>
             <ul>
